@@ -1,0 +1,11 @@
+{
+  "id": "glass-dark/console/hazina-secrets-vault",
+  "title": "Hazina Secrets Vault Console",
+  "style": "glass-dark",
+  "type": "console",
+  "status": "review",
+  "viewport": "1440x900",
+  "entry": "index.html",
+  "tags": ["hazina", "secrets", "ledger", "sidebar", "filters"],
+  "updated": "2026-09-24"
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>codeAmani designs</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
+<style>
+body{margin:0;background:#070B14;color:#fff;font-family:"JetBrains Mono",monospace;padding:40px 22px}
+main{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1{margin:0;font-size:34px}.lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#FF2D95}
+.bar{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#D6DEEC;cursor:pointer}
+button[aria-pressed="true"]{background:#FFE600;color:#070B14;border-color:#FFE600}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+a.card{display:flex;flex-direction:column;gap:8px;padding:22px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#fff;text-decoration:none}
+a.card:hover{border-color:#FF2D95}.meta{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#7C8BA5}
+</style>
+</head>
+<body>
+<main>
+<div class="lbl">// codeAmani Labs · design library</div>
+<h1>Designs</h1>
+<div class="bar" id="styles"></div>
+<div class="bar" id="types"></div>
+<div class="grid" id="grid"></div>
+</main>
+<script>
+let cat,style='all',type='all';
+const bar=(el,items,get,set)=>{el.innerHTML='';['all',...items].forEach(v=>{const b=document.createElement('button');b.textContent=v;b.setAttribute('aria-pressed',get()===v);b.onclick=()=>{set(v);render()};el.appendChild(b)})};
+function render(){
+  bar(document.getElementById('styles'),cat.styles.map(s=>s.id),()=>style,v=>style=v);
+  bar(document.getElementById('types'),cat.types,()=>type,v=>type=v);
+  const g=document.getElementById('grid');g.innerHTML='';
+  cat.designs.filter(d=>(style==='all'||d.style===style)&&(type==='all'||d.type===type)).forEach(d=>{
+    const a=document.createElement('a');a.className='card';a.href=d.path;
+    a.innerHTML='<strong></strong><span class="meta"></span>';
+    a.querySelector('strong').textContent=d.title;
+    a.querySelector('.meta').textContent=[d.style,d.type,d.status,d.viewport].join(' · ');
+    g.appendChild(a);
+  });
+}
+fetch('catalog.json').then(r=>r.json()).then(j=>{cat=j;render()});
+</script>
+</body>
+</html>
