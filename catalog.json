@@ -1,0 +1,17 @@
+{
+  "styles": [
+    {"id": "glass-dark", "name": "codeAmani Glass-Dark", "path": "styles/glass-dark"}
+  ],
+  "types": ["console", "dashboard", "landing", "deck", "doc", "email", "flier", "component", "social"],
+  "designs": [
+    {
+      "id": "glass-dark/console/hazina-secrets-vault",
+      "title": "Hazina Secrets Vault Console",
+      "style": "glass-dark",
+      "type": "console",
+      "status": "review",
+      "viewport": "1440x900",
+      "path": "designs/glass-dark/console/hazina-secrets-vault/index.html"
+    }
+  ]
+}
